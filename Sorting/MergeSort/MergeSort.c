@@ -3,12 +3,10 @@
 
 int PopulateArray(int a[], char *input) {
     FILE *in = fopen(input, "r");
-    int x;
     int i = 0;
     
     while (!feof(in)) {
-        fscanf(in, "%i", &x);
-        i++;
+        fscanf(in, "%i", &(a[i++]));
     }
     
     fclose(in);
@@ -17,17 +15,16 @@ int PopulateArray(int a[], char *input) {
 }
 
 void Copy(int a[], int i, int j, int b[]) {
-    int k = 0;
-    for (k = 0; k <= j - i; k++) {
-        b[k] = a[i + k];
+    int p = 0, k;
+    for (k = i; k <= j; k++) {
+        b[p++] = a[k];
     }
 }
 
 void MergeSort(int a[], int i, int j) {
     int m = (i + j) / 2;
-    int ap = 0, bp = 0;
-    int l[(i + j) / 2], r[(i + j + 1) / 2];
-    int k = 0;
+    int l[m - i + 1], r[j - m];
+    int x, y, k;
     
     MergeSort(a, i, m);
     MergeSort(a, m + 1, j);
@@ -35,11 +32,13 @@ void MergeSort(int a[], int i, int j) {
     Copy(a, i, m, l);
     Copy(a, m + 1, j, r);
     
-    while (k <= j - i) {
-        if (ap < m && l[ap] < r[bp]) {
-            a[k++] = l[ap++];
+    x = 1, y = 1;
+    
+    for (k = i; k <= j; k++) {
+        if (l[x] < r[y]) {
+            a[k] = l[x++];
         } else {
-            a[k++] = r[bp++];
+            a[k] = r[y++];
         }
     }
 }
