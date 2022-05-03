@@ -25,21 +25,24 @@ void MergeSort(int a[], int i, int j) {
     int m = (i + j) / 2;
     int l[m - i + 1], r[j - m];
     int x, y, k;
+    int aaa = 0, bbb = 0;
     
-    MergeSort(a, i, m);
-    MergeSort(a, m + 1, j);
-    
-    Copy(a, i, m, l);
-    Copy(a, m + 1, j, r);
-    
-    x = 1, y = 1;
-    
-    for (k = i; k <= j; k++) {
-        if (l[x] < r[y]) {
-            a[k] = l[x++];
-        } else {
-            a[k] = r[y++];
+    if (i < j) {
+        MergeSort(a, i, m);
+        MergeSort(a, m + 1, j);
+        Copy(a, i, m, l);
+        Copy(a, m + 1, j, r);
+        x = 0, y = 0;
+        for (k = i; k <= j; k++) {
+            if (x <= m && l[x] < r[y]) {
+                if (!(x >= 0 && x <= m - i)) bbb++;
+                a[k] = l[x++];
+            } else {
+                if (!(y >= 0 && y <= m - i)) aaa++;
+                a[k] = r[y++];
+            }
         }
+        printf("\naaa - %i, bbb - %i\n", aaa, bbb);
     }
 }
 
