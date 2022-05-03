@@ -3,12 +3,10 @@
 
 int PopulateArray(int a[], char *input) {
     FILE *in = fopen(input, "r");
-    int x;
     int i = 0;
     
     while (!feof(in)) {
-        fscanf(in, "%i", &x);
-        i++;
+        fscanf(in, "%i", &(a[i++]));
     }
     
     fclose(in);
