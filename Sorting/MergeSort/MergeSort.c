@@ -25,7 +25,6 @@ void MergeSort(int a[], int i, int j) {
     int m = (i + j) / 2;
     int l[m - i + 1], r[j - m];
     int x, y, k;
-    int aaa = 0, bbb = 0;
     
     if (i < j) {
         MergeSort(a, i, m);
@@ -34,15 +33,12 @@ void MergeSort(int a[], int i, int j) {
         Copy(a, m + 1, j, r);
         x = 0, y = 0;
         for (k = i; k <= j; k++) {
-            if (x <= m && l[x] < r[y]) {
-                if (!(x >= 0 && x <= m - i)) bbb++;
+            if (x < m - i + 1 && l[x] < r[y]) {
                 a[k] = l[x++];
             } else {
-                if (!(y >= 0 && y <= m - i)) aaa++;
                 a[k] = r[y++];
             }
         }
-        printf("\naaa - %i, bbb - %i\n", aaa, bbb);
     }
 }
 
@@ -54,17 +50,21 @@ void WriteToDisk(int a[], int n, char *output) {
         fprintf(out, "%i\n", a[i]);
         i++;
     }
+    
+    fclose(out);
 }
 
 int main (int argc, char *argv[]) {
     char *input = argv[1];
     char *output = argv[2];
     int a[10000];
+    int b[10000];
     int n;
     
     n = PopulateArray(a, input);
     
     MergeSort(a, 0, n - 1);
+    
     
     WriteToDisk(a, n, output);
     
