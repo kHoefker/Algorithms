@@ -25,7 +25,7 @@ void SelectionSort(int a[], int n) {
     
     if (n <= 1) return;
     
-    for (i = 0; i < n - 2; i++) {
+    for (i = 0; i < n - 1; i++) {
         if (a[i] > a[n - 1]) Swap(a + i, a + n - 1);
     }
     SelectionSort(a, n - 1);
