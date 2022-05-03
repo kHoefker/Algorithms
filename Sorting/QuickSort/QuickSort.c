@@ -21,13 +21,9 @@ void Swap(int *a, int *b) {
 }
 
 int Random(int a[], int i, int j) {
-    int x = rand() % (j + 1);
+    int x = rand() % (j - i + 1);
     
-    while (x < i) {
-        x = rand() % (j + 1);
-    }
-    
-    return a[x];
+    return a[i + x];
 }
 
 int Partition(int a[], int i, int j, int p) {
