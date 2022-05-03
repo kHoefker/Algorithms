@@ -1,9 +1,0 @@
-Note: This was tested in Linux
-
-Open the terminal and navigate to the directory containing MergeSort.c
-
-Next type in terminal: make
-
-Then type MergeSort input output
-    where input is an input file of ≤ 10000 integers seperated by whitespace
-    where output will be an output file of the integers sorted in ascending order
